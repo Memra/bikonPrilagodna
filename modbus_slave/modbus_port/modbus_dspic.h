@@ -1,0 +1,1 @@
+#ifndef MODBUS_DSPIC_H#define MODBUS_DSPIC_H#include "modbus_slave_cfg.h"void ModbusUartInit(void (*DirPinFunc)(int), void (*ModbusMainFunc)(void));int ModbusUartGetChar(char *data);int ModbusUartPutChar(unsigned char c);int ModbusUartPutString(unsigned char *s, unsigned int count);#endif

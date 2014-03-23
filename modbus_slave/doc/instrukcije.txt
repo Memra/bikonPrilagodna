@@ -1,0 +1,72 @@
+Modbus je protokol za serijsku komunikaciju, spada u grupu cesto koriscenih protokola za senzore i uredjaje u industriji. Jednostavan je i robustan. Ova realizacija Modbus slave modula podrzava samo ASCII format okvira, a koristi RS-485 standard preko UART hardverskih modula u mikrokontrolerima. Trenutno postoji samo implementacija za CodeVisionAVR razvojno okruzenje.
+
+Podrzano je 6 Modbus funkcija:
+	- 1: Citanje vise binarnih vrednosti
+	- 3: Citanje vise 16-bitnih registarskih vrednosti
+	- 5: Upis jedne binarne vrednosti
+	- 6: Upis jedne 16-bitne registarske vrednosti
+	- 15: Upis vise binarnih vrednosti
+	- 16: Upis vise 16-bitnih binarnih vrednosti
+
+Za rad modula je potrebno u fajlu "modbus_slave_cfg.h" zadati ili definisati neke vrednosti:
+	- Upotreba binarnih vrednosti: MODBUS_USE_COILS (0 - ne koristi se, 1 - koristi se)
+	- Upotreba 16-bitnih registara: MODBUS_USE_REGISTERS (0 - ne koristi se, 1 - koristi se)
+	- Upotreba sistema dogadjaja: MODBUS_USE_EVENTS (0 - ne koristi se, 1 - koristi se)
+	- Broj binarnih vrednosti u memorijskoj mapi: MODBUS_NUM_COILS (podrazumevano vrednost je 10)
+	- Broj 16-bitnih registara u memorijskoj mapi: MODBUS_NUM_REGISTERS (podrazumevana vrednost je 10)
+	- Frekvencija takta: MODBUS_OSC	(npr. 7372800, 8000000, 11059200...)
+	- Brzina serijske komunikacije: MODBUS_BAUDRATE (npr. 9600, 115200...)
+	- Mikrokontroler, treba odabrati neki od podrzanih: _ATMEGA8_, _ATMEGA16_, _ATMEGA32_, _ATMEGA64_, _ATMEGA128_, _DSPIC30F411_, _DSPIC30F412_
+
+	- U zavisnosti od odabranog mikrokontrolera postoje i dodatne opcije:
+		- Za _ATMEGA64_ i _ATMEGA128_, biranje UART modula: _UART0_, _UART1_
+		- Za _DSPIC30F411_ i _DSPIC30F411_, biranje UART modula: _UART1_, _UART2_
+
+Da bi se modul ukljucio u neki projekat treba iskopirati direktorijum modbus_slave u direktorijum projekta i potrebno je u dialogu za konfiguraciju projekta (Project->Configure) u odeljku "Files" dodati u polje "Input Files" modbus_slave\datoteke modbus_slave.c i modbus_slave\modbus_port\modbus_atmega.c pritiskom na dugme "Add". Takodje je potrebno u odeljku "C Compiler" dialoga za konfiguraciju projekta odabrati pododeljak "Paths" i u polje "#include paths" dodati sledece: .\modbus_slave i .\modbus_slave\modbus_port
+		
+Modul obezbedjuje sledece funkcije:
+
+	void ModbusSlaveInit(unsigned char address, void (*DirPinFunc)(int))
+Sluzi za inicijalizaciju Modbus slave modula. Neophodno je pozvati ovu funkciju pre upotrebe protokola. Prvi argument funkcije address odredjuje adresu na koju ce se uredjaj odazivati. Drugom argumentu se prosledjuje adresa funkcije koja kontrolise direkcioni pin. Ta funkcije treba da bude sledece strukture:
+void DirFunc(int dir)
+{
+	if(dir == 1)
+	{
+		// kod za podesavanje izlaznog pina za predaju podataka
+	}
+	else if(dir == 0)
+	{
+		// kod za podesavanje izlaznog pina za primanje podataka
+	}
+}
+U slucaju da je modul podesen da se ne koristi hardverski prekid za obradu dolazecih poruka neophodno je u kodu redovno prozivati funkciju ModbusSlaveMain.
+
+	void ModbusSlaveMain()
+Funkcija glavnog koda za obradu poruka, mora se redovno prozivati u slucaju da je tokom inicijalizacije odabrana opcija 0 za treci argument, ali ako je odabrana opcija 1 ova funkcija se ne mora koristiti.
+
+	void ModbusEentDispatcher()
+Ako se koristi sistem dogadjaja, ovu funkciju je potrebno redovno prozivati, ona proverava da li je doslo do izmene na nekoj od vrednosti za koje su definisani dogadjaji i u tom slucaju poziva odgovarajucu funkciju dogadjaja.
+
+	int ModbusSetCoilChangeEvent(unsigned int CoilAddr, void (*CoilEventFunc)(unsigned int))
+Odabir funkcije dogadjaja u slucaju promene vrednosti nekog Coil-a se vrsi ovom funkcijom. Prvi argument naznacava redni broj binarne vrednosti koja se nadgleda, a drugi funkciju za poziv u slucaju promene.
+
+	int ModbusSetRegisterChangeEvent(unsigned int RegAddr, void (*RegisterEventFunc)(unsigned int))
+Odabir funkcije dogadjaja u slucaju promene vrednosti nekog registra se vrsi ovom funkcijom. Prvi argument naznacava redni broj registra koji se nadgleda, a drugi funkciju za poziv u slucaju promene.
+
+	int ModbusSetCoil(unsigned short CoilID, char value)
+Funkcija za podesavanje binarne vrednosti. CoilID oznacava adresu binarne vrednosti, a value vrednost na koju se moze podesiti. Moguce vrednosti su 0 i 1. Ako funkcija uspesno podesi vrednost vraca 1, u suprotnom -1.
+
+	int ModbusGetCoil(unsigned short CoilID, char *value)
+Funkcija za dobijanje vrednosti binarne vrednosti na adresi CoilID. Ako funkcija uspesno procita vrednost vraca 1, u suprotnom -1.
+
+	int ModbusGetMultipleCoils(unsigned short CoilAddr, unsigned int count, unsigned char *data)
+Funkcija za citanje visestrukih binarnih vrednosti. Mogu se procitati samo uzastopne vrednosti. Vraca ih upakovane po osam u jednom bajtu. CoilAddr prima adresu prve vrednosti za citanje, a count prima broj koliko uzastopnih vrednosti treba da se procita. Vrednosti se redjaju u niz cija se adresa prosledi kao treci argument data. Ako funkcija uspesno procita vrednosti vraca 1, u suprotnom -1. 
+
+	int ModbusSetRegister(unsigned short RegisterID, short value)
+Funkcija za podesavanje vrednosti value registra na adresi RegisterID. Ako funkcija uspesno podesi vrednost vraca 1, u suprotnom -1.
+
+	int ModbusGetRegister(unsigned short RegisterID, short *value)
+Funkcija za citanje vrednosti registra na adresi RegisterID. Ako funkcija uspesno procita vrednost vraca 1, u suprotnom -1.
+
+	int ModbusGetMultipleRegisters(unsigned short RegAddr, unsigned int count, unsigned short *value)
+Funkcija za citanje visestrukih registara, pocevsi od adrese RegAddr i cita onoliko registara koliko je naznaceno argumentom count. Vrednosti registara se vracaju u niz cija se adresa naznacava u argumentu value. Ako funkcija uspesno procita registre vraca 1, u suprotnom -1. 
