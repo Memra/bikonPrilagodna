@@ -42,7 +42,7 @@ void executor(void)
                 ModbusSetRegister(REG_M_Y, y);
              }
 
-             SRbits.IPL = 7;
+             SRbits.IPL = 0;
         }
     }
 }
