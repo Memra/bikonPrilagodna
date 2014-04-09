@@ -7,9 +7,6 @@
 
 #define SMER_485 LATFbits.LATF0
 
-#define MODBUS_START_COIL 1
-#define MODBUS_ROBOTS_COIL 2
-
 #define REG_V_X 1
 #define REG_V_Y 2
 #define REG_M_X 3

@@ -12,13 +12,13 @@ _FOSC(CSW_FSCM_OFF & XT_PLL4); // preskaler == 4, fosc = 11059200 / 4 -> fcy == 
 int main(void)
 {
     TRISCbits.TRISC14 = 0;
+    TRISFbits.TRISF0 = 0;
     INTCON1bits.NSTDIS = 0;
     ModbusSlaveInit(2, DirFunc);
 
     initUart1(115200); // ka xbee
 
-    while(started() == 0) // sve dok Zeljko ne pusti zver iz kaveza
-        __delay_ms(5);
+    __delay_ms(500);
 
     executor(); // pisanje po sirotinji
     

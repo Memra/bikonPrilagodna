@@ -4,79 +4,45 @@
 #include <xc.h>
 #include "modbus_slave.h"
 
-static int bigX, bigY;
-static int smallX, smallY;
-
-#define indikacija LATCbits.LATC14
-
-char started(void)
-{
-    char tempCoilStatus;
-    ModbusGetCoil(MODBUS_START_COIL, &tempCoilStatus);
-
-    return tempCoilStatus;
-}
 
 void DirFunc(int dir)
 {
     SMER_485 = dir;
 }
 
-void getCoord(char id, volatile int *x, volatile int *y)
-{
-    unsigned char c1, c2;
-
-    do
-    {
-        flush();
-        sendUart1(id);
-        sendUart1('F');
-        sendUart1('E');
-
-        __delay_ms(60);
-    }while(UART1_checkRx() < 4);
-
-    c1 = getUart1();
-    c2 = getUart1();
-    *x = (c1 << 8) | (c2 & 0xFF);
-
-    c1 = getUart1();
-    c2 = getUart1();
-    *y = (c1 << 8) | (c2 & 0xFF);
-}
-
-
 void executor(void)
 {
-    char numOfRobots;
-
-    ModbusGetCoil(MODBUS_ROBOTS_COIL, &numOfRobots);
-
-    sendUart1('S');
-    sendUart1('S');
-    sendUart1('S');
+    unsigned char i = 0;
+    unsigned char rxBuffer[3];
     
+    unsigned int x, y;
     while(1)
     {
-        getCoord('V', &bigX, &bigY); // prozivanje velikog bikona
+        rxBuffer[2] = rxBuffer[1];
+        rxBuffer[1] = rxBuffer[0];
+        rxBuffer[0] = getUart1();
 
-        SRbits.IPL = 7;
-
-        ModbusSetRegister(REG_V_X, bigX);
-        ModbusSetRegister(REG_V_Y, bigY);
-
-        SRbits.IPL = 0;
-
-        if(numOfRobots == 1) // numOfRobots je binarni broj- 0 -> jedan robot, 1 -> dva robota
+        if((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E')
         {
-            getCoord('M', &smallX, &smallY); // prozivanje malog bikona
+            x = getUart1();
+            x = (x << 8) | getUart1();
+            y = getUart1();
+            y = (y << 8) | getUart1();
 
-            SRbits.IPL = 7;
+             SRbits.IPL = 7;
 
-            ModbusSetRegister(REG_M_X, smallX);
-            ModbusSetRegister(REG_M_Y, smallY);
+             if(rxBuffer[0] == 'V')
+             {
+                ModbusSetRegister(REG_V_X, x);
+                ModbusSetRegister(REG_V_Y, y);
+             }
+             else
+             {
+                ModbusSetRegister(REG_M_X, x);
+                ModbusSetRegister(REG_M_Y, y);
+             }
 
-            SRbits.IPL = 0;
+             SRbits.IPL = 7;
         }
     }
 }
