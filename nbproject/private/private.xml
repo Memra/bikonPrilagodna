@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/home/ns20xx/memristor/bikon/predajni_bikon/prilagodna/prilagodna.X/main.c</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/main.c</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/upravljanje.c</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/uart.c</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/upravljanje.h</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/modbus_slave/modbus_slave.h</file>
+        <file>file:/home/ns20xx/memristor/xBee%20prilagodna/modbus_slave/modbus_slave_cfg.h</file>
     </open-files>
 </project-private>

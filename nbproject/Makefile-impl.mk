@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=prilagodna.X
+PROJECTNAME=xBee prilagodna
 
 # Active Configuration
 DEFAULTCONF=default
