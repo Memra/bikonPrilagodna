@@ -13,6 +13,7 @@ int main(void)
 {
     TRISCbits.TRISC14 = 0;
     INTCON1bits.NSTDIS = 0;
+    TRISFbits.TRISF0 = 0;
     ModbusSlaveInit(2, DirFunc);
 
     initUart1(115200); // ka xbee
