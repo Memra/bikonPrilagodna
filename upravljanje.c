@@ -20,9 +20,9 @@ void executor(void)
     {
         do
         {
-            rxBuffer[2] = rxBuffer[1];
-            rxBuffer[1] = rxBuffer[0];
             rxBuffer[0] = getUart1();
+            rxBuffer[1] = getUart1();
+            rxBuffer[2] = getUart1();
         }while((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E');
 
         //if((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E')
@@ -34,7 +34,7 @@ void executor(void)
 
              SRbits.IPL = 7;
 
-             if(rxBuffer[1] == 'V')
+             if(rxBuffer[0] == 'V')
              {
                 ModbusSetRegister(REG_V_X, x);
                 ModbusSetRegister(REG_V_Y, y);

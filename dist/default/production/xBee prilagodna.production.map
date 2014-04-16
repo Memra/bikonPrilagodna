@@ -91,11 +91,11 @@ Program Memory  [Origin = 0x100, Length = 0x7efe]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x9ae           0xe85  (3717)
-.text                        0xaae               0xc42          0x1263  (4707)
-.dinit                      0x16f0                0x22            0x33  (51)
-.init.delay32               0x1712                0x1c            0x2a  (42)
+.text                        0xaae               0xc3a          0x1257  (4695)
+.dinit                      0x16e8                0x22            0x33  (51)
+.init.delay32               0x170a                0x1c            0x2a  (42)
 
-                     Total program memory used (bytes):         0x2145  (8517) 17%
+                     Total program memory used (bytes):         0x2139  (8505) 17%
 
 
 Data Memory  [Origin = 0x800, Length = 0x800]
@@ -215,8 +215,8 @@ External Symbols in Program Memory (by address):
                   0x0015f6                  _UART1_checkRx
                   0x001602                  _DirFunc
                   0x00161e                  _executor
-                  0x0016cc                  _main
-                  0x001712                  ___delay32
+                  0x0016c4                  _main
+                  0x00170a                  ___delay32
 
 External Symbols in Program Memory (by name):
 
@@ -247,7 +247,7 @@ External Symbols in Program Memory (by name):
                   0x00023a                  __U2TXInterrupt
                   0x0004b6                  ___addsf3
                   0x0004b6                  ___addsf3x
-                  0x001712                  ___delay32
+                  0x00170a                  ___delay32
                   0x000680                  ___divsf3
                   0x000680                  ___divsf3x
                   0x00043e                  ___fixunssfsi
@@ -272,7 +272,7 @@ External Symbols in Program Memory (by name):
                   0x0015ba                  _flush
                   0x0014ee                  _getUart1
                   0x001464                  _initUart1
-                  0x0016cc                  _main
+                  0x0016c4                  _main
                   0x0014d4                  _sendUart1
 
 Memory Configuration
@@ -458,13 +458,13 @@ userdata
  .debug_abbrev    0x000363        0x144 build/default/production/modbus_slave/modbus_slave.o
  .debug_abbrev    0x0004a7        0x1b6 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
-.debug_line       0x000000       0x1045
+.debug_line       0x000000       0x103b
  *(.debug_line)
  .debug_line      0x000000         0xd1 build/default/production/main.o
  .debug_line      0x0000d1        0x22b build/default/production/uart.o
- .debug_line      0x0002fc        0x144 build/default/production/upravljanje.o
- .debug_line      0x000440        0x8d9 build/default/production/modbus_slave/modbus_slave.o
- .debug_line      0x000d19        0x32c build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+ .debug_line      0x0002fc        0x13a build/default/production/upravljanje.o
+ .debug_line      0x000436        0x8d9 build/default/production/modbus_slave/modbus_slave.o
+ .debug_line      0x000d0f        0x32c build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
 .debug_frame      0x000000        0x244
  *(.debug_frame)
@@ -1432,7 +1432,7 @@ __c30_signature
  .nbss              0x0940          0x2 /opt/microchip/xc16/v1.20/bin/bin/../../lib/libfastm-elf.a(errno.eo)
                     0x0940                  _errno
 
-.text             0x000aae        0xc42
+.text             0x000aae        0xc3a
  .text            0x000aae        0x9b6 build/default/production/modbus_slave/modbus_slave.o
                   0x000aae                  _ModbusSetCoil
                   0x000ace                  _ModbusSetCoilPrivate
@@ -1456,15 +1456,15 @@ __c30_signature
                   0x001548                  __U1RXInterrupt
                   0x0015ba                  _flush
                   0x0015f6                  _UART1_checkRx
- .text            0x001602         0xca build/default/production/upravljanje.o
+ .text            0x001602         0xc2 build/default/production/upravljanje.o
                   0x001602                  _DirFunc
                   0x00161e                  _executor
- .text            0x0016cc         0x24 build/default/production/main.o
-                  0x0016cc                  _main
+ .text            0x0016c4         0x24 build/default/production/main.o
+                  0x0016c4                  _main
 
-.dinit            0x0016f0         0x22
- .dinit           0x0016f0         0x22 data_init
+.dinit            0x0016e8         0x22
+ .dinit           0x0016e8         0x22 data_init
 
-.init.delay32     0x001712         0x1c
- .init.delay32    0x001712         0x1c /opt/microchip/xc16/v1.20/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
-                  0x001712                  ___delay32
+.init.delay32     0x00170a         0x1c
+ .init.delay32    0x00170a         0x1c /opt/microchip/xc16/v1.20/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
+                  0x00170a                  ___delay32
