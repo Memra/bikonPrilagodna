@@ -18,12 +18,15 @@ void executor(void)
     unsigned int x, y;
     while(1)
     {
-        rxBuffer[2] = rxBuffer[1];
-        rxBuffer[1] = rxBuffer[0];
-        rxBuffer[0] = getUart1();
-
-        if((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E')
+        do
         {
+            rxBuffer[2] = rxBuffer[1];
+            rxBuffer[1] = rxBuffer[0];
+            rxBuffer[0] = getUart1();
+        }while((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E');
+
+        //if((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E')
+        //{
             x = getUart1();
             x = (x << 8) | getUart1();
             y = getUart1();
@@ -31,7 +34,7 @@ void executor(void)
 
              SRbits.IPL = 7;
 
-             if(rxBuffer[0] == 'V')
+             if(rxBuffer[1] == 'V')
              {
                 ModbusSetRegister(REG_V_X, x);
                 ModbusSetRegister(REG_V_Y, y);
@@ -43,6 +46,6 @@ void executor(void)
              }
 
              SRbits.IPL = 0;
-        }
+       // }
     }
 }
