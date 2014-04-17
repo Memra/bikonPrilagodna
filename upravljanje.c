@@ -12,40 +12,37 @@ void DirFunc(int dir)
 
 void executor(void)
 {
+    int x, y;
+    unsigned char rx[7];
     unsigned char i = 0;
-    unsigned char rxBuffer[3];
-    
-    unsigned int x, y;
+
     while(1)
     {
-        do
+        for(i = 5; i >= 0; --i)
+            rx[i + 1] = rx[i];
+
+        rx[0] = getUart1();
+        if((rx[6] == 'M' || rx[6] == 'V') && rx[5] == 'F' && rx[4] == 'E')
         {
-            rxBuffer[0] = getUart1();
-            rxBuffer[1] = getUart1();
-            rxBuffer[2] = getUart1();
-        }while((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E');
+            if((rx[3] == 'V' || rx[3] == 'M') && rx[2] == 'F' && rx[1] == 'E')
+                continue;
 
-        //if((rxBuffer[0] == 'V' || rxBuffer[1] == 'M') && rxBuffer[1] == 'F' && rxBuffer[2] == 'E')
-        //{
-            x = getUart1();
-            x = (x << 8) | getUart1();
-            y = getUart1();
-            y = (y << 8) | getUart1();
+            x = (rx[3] << 8) | rx[2];
+            y = (rx[1] << 8) | rx[0];
 
-             SRbits.IPL = 7;
-
-             if(rxBuffer[0] == 'V')
-             {
-                ModbusSetRegister(REG_V_X, x);
-                ModbusSetRegister(REG_V_Y, y);
-             }
-             else
-             {
+            SRbits.IPL = 7;
+            if(rx[6] == 'M')
+            {
                 ModbusSetRegister(REG_M_X, x);
                 ModbusSetRegister(REG_M_Y, y);
-             }
+            }
 
-             SRbits.IPL = 0;
-       // }
+            if(rx[6] == 'V')
+            {
+                ModbusSetRegister(REG_V_X, x);
+                ModbusSetRegister(REG_V_Y, y);
+            }
+            SRbits.IPL = 0;
+        }
     }
 }
