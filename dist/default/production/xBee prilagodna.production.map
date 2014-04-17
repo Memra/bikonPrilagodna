@@ -91,22 +91,22 @@ Program Memory  [Origin = 0x100, Length = 0x7efe]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x9ae           0xe85  (3717)
-.text                        0xaae               0xc90          0x12d8  (4824)
-.dinit                      0x173e                0x28            0x3c  (60)
-.init.delay32               0x1766                0x1c            0x2a  (42)
+.text                        0xaae               0xbb4          0x118e  (4494)
+.dinit                      0x1662                0x22            0x33  (51)
+.init.delay32               0x1684                0x1c            0x2a  (42)
 
-                     Total program memory used (bytes):         0x21c3  (8643) 17%
+                     Total program memory used (bytes):         0x2070  (8304) 17%
 
 
 Data Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0           0x148  (328)
-.ndata                       0x948                   0             0x2  (2)
-.nbss                        0x94a                   0             0x2  (2)
+.nbss                        0x800                   0           0x13e  (318)
+.ndata                       0x93e                   0             0x2  (2)
+.nbss                        0x940                   0             0x2  (2)
 
-                        Total data memory used (bytes):          0x14c  (332) 16%
+                        Total data memory used (bytes):          0x142  (322) 15%
 
 
 Dynamic Memory Usage
@@ -114,52 +114,52 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x94c                               0x6b4  (1716)
+stack                        0x942                               0x6be  (1726)
 
-                        Maximum dynamic memory (bytes):          0x6b4  (1716)
+                        Maximum dynamic memory (bytes):          0x6be  (1726)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x080e                  _asciiPart
-                    0x0812                  _i
-                    0x0814                  _k
-                    0x0816                  _crlf
-                    0x0818                  _broadcast
-                    0x081a                  _function
-                    0x081b                  _data
-                    0x086b                  _byte
-                    0x0893                  _LRC
-                    0x0898                  _rx_buffer
-                    0x08d8                  _rx_wr_index
-                    0x08d9                  _rx_rd_index
-                    0x08da                  _rx_counter
-                    0x08db                  _tx_buffer
-                    0x091b                  _tx_wr_index
-                    0x091c                  _tx_rd_index
-                    0x091d                  _tx_counter
-                    0x0948                  _modbus_state
+                    0x080c                  _asciiPart
+                    0x0810                  _i
+                    0x0812                  _k
+                    0x0814                  _crlf
+                    0x0816                  _broadcast
+                    0x0818                  _function
+                    0x0819                  _data
+                    0x0869                  _byte
+                    0x0891                  _LRC
+                    0x0896                  _rx_buffer
+                    0x08d6                  _rx_wr_index
+                    0x08d7                  _rx_rd_index
+                    0x08d8                  _rx_counter
+                    0x08d9                  _tx_buffer
+                    0x0919                  _tx_wr_index
+                    0x091a                  _tx_rd_index
+                    0x091b                  _tx_counter
+                    0x093e                  _modbus_state
 
 External Symbols in Data Memory (by name):
 
-                    0x0893                  _LRC
-                    0x080e                  _asciiPart
-                    0x0818                  _broadcast
-                    0x086b                  _byte
-                    0x0816                  _crlf
-                    0x081b                  _data
-                    0x081a                  _function
-                    0x0812                  _i
-                    0x0814                  _k
-                    0x0948                  _modbus_state
-                    0x0898                  _rx_buffer
-                    0x08da                  _rx_counter
-                    0x08d9                  _rx_rd_index
-                    0x08d8                  _rx_wr_index
-                    0x08db                  _tx_buffer
-                    0x091d                  _tx_counter
-                    0x091c                  _tx_rd_index
-                    0x091b                  _tx_wr_index
+                    0x0891                  _LRC
+                    0x080c                  _asciiPart
+                    0x0816                  _broadcast
+                    0x0869                  _byte
+                    0x0814                  _crlf
+                    0x0819                  _data
+                    0x0818                  _function
+                    0x0810                  _i
+                    0x0812                  _k
+                    0x093e                  _modbus_state
+                    0x0896                  _rx_buffer
+                    0x08d8                  _rx_counter
+                    0x08d7                  _rx_rd_index
+                    0x08d6                  _rx_wr_index
+                    0x08d9                  _tx_buffer
+                    0x091b                  _tx_counter
+                    0x091a                  _tx_rd_index
+                    0x0919                  _tx_wr_index
 
 External Symbols in Program Memory (by address):
 
@@ -213,16 +213,14 @@ External Symbols in Program Memory (by address):
                   0x001548                  __U1RXInterrupt
                   0x0015ba                  _flush
                   0x0015f6                  _UART1_checkRx
-                  0x001602                  _started
-                  0x001612                  _DirFunc
-                  0x00162e                  _getCoord
-                  0x001690                  _executor
-                  0x001710                  _main
-                  0x001766                  ___delay32
+                  0x001602                  _DirFunc
+                  0x00161e                  _executor
+                  0x00163e                  _main
+                  0x001684                  ___delay32
 
 External Symbols in Program Memory (by name):
 
-                  0x001612                  _DirFunc
+                  0x001602                  _DirFunc
                   0x000daa                  _ModbusASCIIToByte
                   0x000d18                  _ModbusAccumulate
                   0x000e00                  _ModbusAsciify
@@ -249,7 +247,7 @@ External Symbols in Program Memory (by name):
                   0x00023a                  __U2TXInterrupt
                   0x0004b6                  ___addsf3
                   0x0004b6                  ___addsf3x
-                  0x001766                  ___delay32
+                  0x001684                  ___delay32
                   0x000680                  ___divsf3
                   0x000680                  ___divsf3x
                   0x00043e                  ___fixunssfsi
@@ -270,14 +268,12 @@ External Symbols in Program Memory (by name):
                   0x00090a                  __spackf
                   0x000a7a                  __typef
                   0x000850                  __unpackf
-                  0x001690                  _executor
+                  0x00161e                  _executor
                   0x0015ba                  _flush
-                  0x00162e                  _getCoord
                   0x0014ee                  _getUart1
                   0x001464                  _initUart1
-                  0x001710                  _main
+                  0x00163e                  _main
                   0x0014d4                  _sendUart1
-                  0x001602                  _started
 
 Memory Configuration
 
@@ -445,38 +441,38 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x25ea
+.debug_info       0x000000       0x251b
  *(.debug_info)
  .debug_info      0x000000        0x35a build/default/production/main.o
  .debug_info      0x00035a        0xc0c build/default/production/uart.o
- .debug_info      0x000f66        0x47a build/default/production/upravljanje.o
- .debug_info      0x0013e0        0x837 build/default/production/modbus_slave/modbus_slave.o
- .debug_info      0x001c17        0x9d3 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+ .debug_info      0x000f66        0x3ab build/default/production/upravljanje.o
+ .debug_info      0x001311        0x837 build/default/production/modbus_slave/modbus_slave.o
+ .debug_info      0x001b48        0x9d3 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x66d
+.debug_abbrev     0x000000        0x66a
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0xd2 build/default/production/main.o
  .debug_abbrev    0x0000d2        0x176 build/default/production/uart.o
- .debug_abbrev    0x000248        0x12b build/default/production/upravljanje.o
- .debug_abbrev    0x000373        0x144 build/default/production/modbus_slave/modbus_slave.o
- .debug_abbrev    0x0004b7        0x1b6 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+ .debug_abbrev    0x000248        0x128 build/default/production/upravljanje.o
+ .debug_abbrev    0x000370        0x144 build/default/production/modbus_slave/modbus_slave.o
+ .debug_abbrev    0x0004b4        0x1b6 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
-.debug_line       0x000000       0x10f1
+.debug_line       0x000000        0xfdb
  *(.debug_line)
- .debug_line      0x000000         0xe1 build/default/production/main.o
- .debug_line      0x0000e1        0x22b build/default/production/uart.o
- .debug_line      0x00030c        0x1e0 build/default/production/upravljanje.o
- .debug_line      0x0004ec        0x8d9 build/default/production/modbus_slave/modbus_slave.o
- .debug_line      0x000dc5        0x32c build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+ .debug_line      0x000000         0xd1 build/default/production/main.o
+ .debug_line      0x0000d1        0x22b build/default/production/uart.o
+ .debug_line      0x0002fc         0xda build/default/production/upravljanje.o
+ .debug_line      0x0003d6        0x8d9 build/default/production/modbus_slave/modbus_slave.o
+ .debug_line      0x000caf        0x32c build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
-.debug_frame      0x000000        0x264
+.debug_frame      0x000000        0x244
  *(.debug_frame)
  .debug_frame     0x000000         0x24 build/default/production/main.o
  .debug_frame     0x000024         0x74 build/default/production/uart.o
- .debug_frame     0x000098         0x54 build/default/production/upravljanje.o
- .debug_frame     0x0000ec        0x104 build/default/production/modbus_slave/modbus_slave.o
- .debug_frame     0x0001f0         0x74 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+ .debug_frame     0x000098         0x34 build/default/production/upravljanje.o
+ .debug_frame     0x0000cc        0x104 build/default/production/modbus_slave/modbus_slave.o
+ .debug_frame     0x0001d0         0x74 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
 .debug_str        0x000000        0x117
  *(.debug_str)
@@ -493,18 +489,18 @@ userdata
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x3bd
+                  0x000000        0x3a4
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x2f build/default/production/main.o
  .debug_pubnames
                   0x00002f         0x6a build/default/production/uart.o
  .debug_pubnames
-                  0x000099         0x44 build/default/production/upravljanje.o
+                  0x000099         0x2b build/default/production/upravljanje.o
  .debug_pubnames
-                  0x0000dd        0x1d7 build/default/production/modbus_slave/modbus_slave.o
+                  0x0000c4        0x1d7 build/default/production/modbus_slave/modbus_slave.o
  .debug_pubnames
-                  0x0002b4        0x109 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+                  0x00029b        0x109 build/default/production/modbus_slave/modbus_port/modbus_dspic.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1406,38 +1402,37 @@ __c30_signature
  __c30_signature
                   0x0002ce          0x6 /opt/microchip/xc16/v1.20/bin/bin/../../lib/libfastm-elf.a(fpack.eo)
 
-.nbss               0x0800        0x148
- .nbss              0x0800         0x94 build/default/production/modbus_slave/modbus_slave.o
-                    0x080e                  _asciiPart
-                    0x0812                  _i
-                    0x0814                  _k
-                    0x0816                  _crlf
-                    0x0818                  _broadcast
-                    0x081a                  _function
-                    0x081b                  _data
-                    0x086b                  _byte
-                    0x0893                  _LRC
- .nbss              0x0894         0x8a build/default/production/modbus_slave/modbus_port/modbus_dspic.o
-                    0x0898                  _rx_buffer
-                    0x08d8                  _rx_wr_index
-                    0x08d9                  _rx_rd_index
-                    0x08da                  _rx_counter
-                    0x08db                  _tx_buffer
-                    0x091b                  _tx_wr_index
-                    0x091c                  _tx_rd_index
-                    0x091d                  _tx_counter
- .nbss              0x091e         0x22 build/default/production/uart.o
- .nbss              0x0940          0x8 build/default/production/upravljanje.o
+.nbss               0x0800        0x13e
+ .nbss              0x0800         0x92 build/default/production/modbus_slave/modbus_slave.o
+                    0x080c                  _asciiPart
+                    0x0810                  _i
+                    0x0812                  _k
+                    0x0814                  _crlf
+                    0x0816                  _broadcast
+                    0x0818                  _function
+                    0x0819                  _data
+                    0x0869                  _byte
+                    0x0891                  _LRC
+ .nbss              0x0892         0x8a build/default/production/modbus_slave/modbus_port/modbus_dspic.o
+                    0x0896                  _rx_buffer
+                    0x08d6                  _rx_wr_index
+                    0x08d7                  _rx_rd_index
+                    0x08d8                  _rx_counter
+                    0x08d9                  _tx_buffer
+                    0x0919                  _tx_wr_index
+                    0x091a                  _tx_rd_index
+                    0x091b                  _tx_counter
+ .nbss              0x091c         0x22 build/default/production/uart.o
 
-.ndata              0x0948          0x2
- .ndata             0x0948          0x2 build/default/production/modbus_slave/modbus_slave.o
-                    0x0948                  _modbus_state
+.ndata              0x093e          0x2
+ .ndata             0x093e          0x2 build/default/production/modbus_slave/modbus_slave.o
+                    0x093e                  _modbus_state
 
-.nbss               0x094a          0x2
- .nbss              0x094a          0x2 /opt/microchip/xc16/v1.20/bin/bin/../../lib/libfastm-elf.a(errno.eo)
-                    0x094a                  _errno
+.nbss               0x0940          0x2
+ .nbss              0x0940          0x2 /opt/microchip/xc16/v1.20/bin/bin/../../lib/libfastm-elf.a(errno.eo)
+                    0x0940                  _errno
 
-.text             0x000aae        0xc90
+.text             0x000aae        0xbb4
  .text            0x000aae        0x9b6 build/default/production/modbus_slave/modbus_slave.o
                   0x000aae                  _ModbusSetCoil
                   0x000ace                  _ModbusSetCoilPrivate
@@ -1461,17 +1456,15 @@ __c30_signature
                   0x001548                  __U1RXInterrupt
                   0x0015ba                  _flush
                   0x0015f6                  _UART1_checkRx
- .text            0x001602        0x10e build/default/production/upravljanje.o
-                  0x001602                  _started
-                  0x001612                  _DirFunc
-                  0x00162e                  _getCoord
-                  0x001690                  _executor
- .text            0x001710         0x2e build/default/production/main.o
-                  0x001710                  _main
+ .text            0x001602         0x3c build/default/production/upravljanje.o
+                  0x001602                  _DirFunc
+                  0x00161e                  _executor
+ .text            0x00163e         0x24 build/default/production/main.o
+                  0x00163e                  _main
 
-.dinit            0x00173e         0x28
- .dinit           0x00173e         0x28 data_init
+.dinit            0x001662         0x22
+ .dinit           0x001662         0x22 data_init
 
-.init.delay32     0x001766         0x1c
- .init.delay32    0x001766         0x1c /opt/microchip/xc16/v1.20/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
-                  0x001766                  ___delay32
+.init.delay32     0x001684         0x1c
+ .init.delay32    0x001684         0x1c /opt/microchip/xc16/v1.20/bin/bin/../../lib/libpic30-elf.a(delay32.eo)
+                  0x001684                  ___delay32
