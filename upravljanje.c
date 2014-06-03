@@ -30,6 +30,11 @@ void executor(void)
             x = (rx[3] << 8) | rx[2];
             y = (rx[1] << 8) | rx[0];
 
+	    if(x < 0 || x > 2500 || y < 0 || y > 3250)
+	    {
+		    x = y = 5000;
+	    }
+
             SRbits.IPL = 7;
             if(rx[6] == 'M')
             {
