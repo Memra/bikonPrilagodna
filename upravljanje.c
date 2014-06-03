@@ -14,7 +14,7 @@ void executor(void)
 {
     int x, y;
     unsigned char rx[7];
-    unsigned char i = 0;
+    char i = 0;
 
     while(1)
     {
